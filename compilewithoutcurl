@@ -1,0 +1,1 @@
+g++ LinkedList.cpp driver.cpp Node.cpp -o linkedlists

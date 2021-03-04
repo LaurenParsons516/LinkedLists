@@ -24,6 +24,9 @@ int main(int argc, char** argv)
     int value = ll->removeEnd();
     ll->removeFront();
     ll->display();
+    ll->addAtIndex(1, 9);
+    ll->display();
+    ll->removeAtIndex(1);
     cout << value << endl;
     return 0;
 }

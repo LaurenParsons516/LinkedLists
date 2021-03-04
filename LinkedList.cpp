@@ -11,6 +11,108 @@ LinkedList::LinkedList()
     this->count = 0;
 }
 
+
+int LinkedList::removeAtIndex(int index)
+{
+    if(this->head)
+    {
+        if(index < 0 || index >= this->count)
+        {
+            cout << "ArrayIndexOutOfBoundException!!!!" << endl;
+        }
+        else
+        {
+            //I actuall have something to remove
+            if(index == 0)
+            {
+                return this->removeFront();
+            }
+            else if(index == this->count-1)
+            {
+                return this->removeEnd();
+            }
+            else
+            {
+                //we are removing from somewhere in the middle
+                Node* prevDude = this->head;
+                Node* dude2Remove = this->head;
+
+                //How do I get prevDude and dude2Remove set in a single loop?
+                //run dude2Remove to the correct index
+                for(int i = 0; i < index; i++)
+                {
+                    dude2Remove = dude2Remove->getNextNode();
+                }
+
+                //now make preDude point to the node right before dude2Remove
+                while(prevDude->getNextNode() != dude2Remove)
+                {
+                    prevDude = prevDude->getNextNode();
+                }
+
+                /* Identical result as the while loop above
+                //what is another way we could have written the while loop above?
+                for(int i = 0; i < index-1; i++)
+                {
+                    prevDude = prevDude->getNextNode();
+                }
+                */
+
+               //Now everything is position and we are ready to operate!!!
+               prevDude->setNextNode(dude2Remove->getNextNode());
+               dude2Remove->setNextNode(NULL);
+               int value2Return = dude2Remove->getPayload();
+               delete(dude2Remove);
+               this->count--;
+               return value2Return;
+            }
+            
+        }
+        
+    }
+    else
+    {
+        cout << "Nothing to Remove from the Empty List" << endl;
+    }
+    
+}
+
+
+void LinkedList::addAtIndex(int index, int value)
+{
+    if(index < 0 || index >= this->count)
+    {
+        cout << "ArrayIndexOutOfBoundException!!!!" << endl;
+    }
+    else
+    {
+        if(index == 0)
+        {
+            this->addFront(value);
+        }
+        else if(index == this->count-1)
+        {
+            this->addEnd(value);
+        }
+        else
+        {
+            //we are removing from somewhere in the middle
+            Node* prevDude = this->head;
+            Node* dude2Add = new Node(value);
+
+            for(int i = 0; i < index-1; i++)
+            {
+                prevDude = prevDude->getNextNode();
+            }
+            
+            dude2Add->setNextNode(prevDude->getNextNode());
+            prevDude->setNextNode(dude2Add);
+            
+        }
+        
+    }
+}
+
 void LinkedList::addEnd(int value)
 {
     Node* n = new Node(value);
