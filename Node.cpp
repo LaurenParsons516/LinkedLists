@@ -21,3 +21,8 @@ int Node::getPayload()
 {
     return this->payload;
 }
+
+void Node::setPayload(int value)
+{
+    this->payload = value;
+}

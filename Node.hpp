@@ -10,4 +10,5 @@ class Node
         void setNextNode(Node* n);
         Node* getNextNode();
         int getPayload();
+        void setPayload(int value);
 };

@@ -96,7 +96,6 @@ void LinkedList::addAtIndex(int index, int value)
         }
         else
         {
-            //we are removing from somewhere in the middle
             Node* prevDude = this->head;
             Node* dude2Add = new Node(value);
 
@@ -221,4 +220,52 @@ void LinkedList::display()
         cout << currNode->getPayload() << endl;
     }
     
+}
+
+Node* LinkedList::getPreviousNode(Node* currNode) 
+{
+    if (currNode == this->head) 
+    {
+        return NULL;
+    }
+    Node* prevNode = this->head;
+    while (prevNode->getNextNode() != currNode)
+    {
+        prevNode = prevNode->getNextNode();
+    }
+    return prevNode;
+}
+
+void LinkedList::insertionSort()
+{    
+    Node* theFollower;
+    Node* tempSwap;
+
+    for (Node* currNode = this->head; currNode != NULL; currNode = currNode->getNextNode()) 
+    {
+       // cout << "in for: ";
+      //  this->display();
+       // cout << "\n";
+        theFollower = currNode;
+        while (theFollower != this->head && theFollower->getPayload() < getPreviousNode(theFollower)->getPayload())
+        {            
+          //  cout << "in while: ";
+        //    this->display();
+        //    cout << "\n";
+            // getPreviousNode(theFollower)->setNextNode(currNode);
+            // theFollower->setNextNode(currNode->getNextNode());
+            // if (currNode != theFollower) 
+            // {
+            //     currNode->setNextNode(theFollower);
+            // }
+
+            int temp = theFollower->getPayload();
+            theFollower->setPayload(currNode->getPayload());
+            currNode->setPayload(temp);
+
+
+            
+            theFollower = getPreviousNode(theFollower);
+        }
+    }
 }

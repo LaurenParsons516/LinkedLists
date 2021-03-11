@@ -4,8 +4,17 @@
 #include <string>
 #include "myFunctions.hpp"
 #include "LinkedList.hpp"
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
+
+#define ARRAY_LENGTH 10 //called a macro
+ 
+//prototype functions
+void insertionSort(int ar[]);
+void displayIntArray(int ar[]);
+
 
 int main(int argc, char** argv)
 {
@@ -14,21 +23,38 @@ int main(int argc, char** argv)
     //string jsonString = "[{\"fname\":\"val1\", \"lname\": \"val2\", \"sums\":[1,2,3]},{\"fname\":\"val3\", \"lname\":\"val4\"}]";
     //cout << jsonString << endl;
     //processJSONObject(jsonString, 0);
+
     LinkedList* ll = new LinkedList();
-    ll->addEnd(4);
-    ll->addEnd(6);
-    ll->addEnd(8);
-    ll->addEnd(2);
-    ll->addFront(5);
+    // ll->addEnd(4);
+    // ll->addEnd(6);
+    // ll->addEnd(8);
+    // ll->addEnd(2);
+    // ll->addFront(5);
+    // ll->display();
+    // int value = ll->removeEnd();
+    // ll->removeFront();
+    // ll->display();
+    // ll->addAtIndex(1, 9);
+    // ll->display();
+    // ll->removeAtIndex(1);
+    // cout << value << endl;
+    // return 0;
+
+    
+    srandom(time(NULL));
+
+    for(int i = 0; i < 5; i++)
+    {
+        long val = random();
+        val = (val % 1000)+1;
+        ll->addFront(val);
+     }
+    // ll->addEnd(3);
+    // ll->addEnd(2);
+    // ll->addEnd(1);
     ll->display();
-    int value = ll->removeEnd();
-    ll->removeFront();
+    ll->insertionSort();
     ll->display();
-    ll->addAtIndex(1, 9);
-    ll->display();
-    ll->removeAtIndex(1);
-    cout << value << endl;
-    return 0;
 }
 
 string processJSONObject(string json, int start)
